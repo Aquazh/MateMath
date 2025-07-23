@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">MateMath</string>
+    
+    <!-- Welcome Screen -->
+    <string name="welcome_title">¡Bienvenido a MateMath!</string>
+    <string name="welcome_subtitle">Aprende matemáticas jugando</string>
+    <string name="start_playing">¡Empezar a Jugar!</string>
+    
+    <!-- Math Problems -->
+    <string name="math_question">¿Cuánto es %1$d %2$s %3$d?</string>
+    <string name="correct_answer">¡Muy bien!</string>
+    <string name="wrong_answer">¡Inténtalo de nuevo!</string>
+    <string name="next_question">Siguiente Pregunta</string>
+    
+    <!-- UI Elements -->
+    <string name="score">Puntuación: %1$d</string>
+    <string name="yerba_coins">Yerba Coins: %1$d</string>
+    <string name="addition">+</string>
+    <string name="subtraction">-</string>
+    
+    <!-- Encouragement -->
+    <string name="great_job">¡Excelente trabajo!</string>
+    <string name="keep_going">¡Sigue así!</string>
+    <string name="you_can_do_it">¡Tú puedes!</string>
+    
+    <!-- Learning Mode -->
+    <string name="learning_mode">Modo Aprendizaje</string>
+    <string name="practice_mode">Modo Práctica</string>
+    <string name="step_by_step">Paso a paso</string>
+    <string name="hint">Pista</string>
+    <string name="repeat_step">Repetir paso</string>
+    <string name="next_step">Siguiente paso</string>
+    <string name="previous_step">Paso anterior</string>
+    <string name="show_explanation">Ver explicación</string>
+    <string name="how_to_play">¿Cómo quieres jugar?</string>
+    <string name="learning_description">Te enseño paso a paso</string>
+    <string name="practice_description">Resuelve problemas rápido</string>
+</resources>
