@@ -9,35 +9,71 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
+import androidx.core.view.WindowCompat
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+// Minimalist Light Color Scheme
+private val LightColorScheme = lightColorScheme(
+    primary = MateMathColors.Primary,
+    onPrimary = MateMathColors.Surface,
+    primaryContainer = MateMathColors.PrimaryLight,
+    onPrimaryContainer = MateMathColors.OnSurface,
+    
+    secondary = MateMathColors.OnSurfaceSecondary,
+    onSecondary = MateMathColors.Surface,
+    secondaryContainer = MateMathColors.SurfaceVariant,
+    onSecondaryContainer = MateMathColors.OnSurface,
+    
+    tertiary = MateMathColors.OnSurfaceTertiary,
+    onTertiary = MateMathColors.Surface,
+    tertiaryContainer = MateMathColors.SurfaceVariant,
+    onTertiaryContainer = MateMathColors.OnSurface,
+    
+    error = MateMathColors.Error,
+    onError = MateMathColors.Surface,
+    errorContainer = MateMathColors.ErrorLight,
+    onErrorContainer = MateMathColors.Error,
+    
+    background = MateMathColors.Background,
+    onBackground = MateMathColors.OnSurface,
+    
+    surface = MateMathColors.Surface,
+    onSurface = MateMathColors.OnSurface,
+    surfaceVariant = MateMathColors.SurfaceVariant,
+    onSurfaceVariant = MateMathColors.OnSurfaceSecondary,
+    
+    outline = MateMathColors.OnSurfaceTertiary,
+    outlineVariant = MateMathColors.ProgressBackground,
+    
+    scrim = MateMathColors.Overlay,
+    
+    inverseSurface = MateMathColors.OnSurface,
+    inverseOnSurface = MateMathColors.Surface,
+    inversePrimary = MateMathColors.PrimaryLight
 )
 
-private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+// Dark mode (if needed later, but focusing on light mode for children)
+private val DarkColorScheme = darkColorScheme(
+    primary = MateMathColors.PrimaryLight,
+    secondary = MateMathColors.OnSurfaceTertiary,
+    tertiary = MateMathColors.OnSurfaceSecondary,
+    background = MateMathColors.OnSurface,
+    surface = MateMathColors.OnSurface,
+    onPrimary = MateMathColors.OnSurface,
+    onSecondary = MateMathColors.Surface,
+    onTertiary = MateMathColors.Surface,
+    onBackground = MateMathColors.Surface,
+    onSurface = MateMathColors.Surface,
 )
 
 @Composable
 fun MateMathTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false, // Disabled for consistent branding
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
@@ -49,10 +85,19 @@ fun MateMathTheme(
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
     }
+    
+    val view = LocalView.current
+    if (!view.isInEditMode) {
+        SideEffect {
+            val window = (view.context as Activity).window
+            window.statusBarColor = MateMathColors.Background.toArgb()
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
+        }
+    }
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography,
+        typography = MateMathTypography,
         content = content
     )
 }
